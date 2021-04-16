@@ -7,12 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-<div style="color:blue; text-align:center; margin-top:120px;">
-    <h1>WELCOME TO MY PAGE</h1>
+    <?php SESSION_START(); 
+    
+        if(!isset($_SESSION['UserData']['email'])){
+        header("location:login.php");
+        exit;
+    }
+    ?>
+    <div style="color:blue; text-align:center; margin-top:120px;">
+        <h1>WELCOME TO MY PAGE</h1>
 
-    <P>To continue <span style="color:blue;"><a href="login.php" target="_blank">Login here</a></span> OR <span style="color:green"><a href="register.php" target="_blank">Register</a></span></P>
+        <p>To continue <span style="color:blue;"><a href="logout.php">Click here</a> to Logout.</span></p> 
 
-</div>
+    </div>
 
 </body>
 </html>

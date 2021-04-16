@@ -1,5 +1,6 @@
-<?php
 
+<?php
+    
     //form validation, remove backslashes, space, tab and newline
     function test_data($data) {
         $data = trim($data);
@@ -26,16 +27,38 @@
         '$password' => $password,
         '$password_repeat' => $password_repeat
     ];
-
-    echo 'Welcome ' .  $first_name . ' ' . $last_name;
+    
     //save value using filesystem
     file_put_contents('files/'.  $regDetails['$email'] . ".json" , json_encode($regDetails));
+    
+    // echo json_encode($regDetails['$email']);
 
-}
+    SESSION_START();
 
-SESSION_START();
-
-    $_SESSION['$email' => $email]
-    $_SESSION['$password' => $password],
+    $_SESSION['details'] = $regDetails;
+    $_SESSION['first_name'] = json_encode($regDetails['$first_name']);
+    $_SESSION['email'] = json_encode($regDetails['$email']);
+    $_SESSION['email--'] = $regDetails['$email'];
+    $_SESSION['password'] = $regDetails['$password'];
+    
+};
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div style="color:blue; text-align:center; margin-top:120px;">
+        <h1>WELCOME <?php  echo $first_name . ' ' . $last_name; ?> </h1>
+
+        <p>To continue <span style="color:blue;"><a href="logout.php">Click here</a> to Logout.</span></p> 
+
+    </div>
+</body>
+</html>
